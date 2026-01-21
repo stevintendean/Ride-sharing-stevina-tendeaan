@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Sharing DApp</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-taxi"></i> Gojek 'web3'
+        </div>
+        <button class="connect-btn" onclick="connectWallet()">
+            <i class="fas fa-wallet"></i> <span id="btnText">Connect Wallet</span>
+        </button>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="status-bar">
+            <p>Status: <span id="connectionStatus" class="badge badge-offline">Offline</span></p>
+            <p class="account-text">Akun: <span id="myAccount">...</span></p>
+        </div>
+
+        <div class="grid-container">
+            <div class="card driver-card">
+                <div class="card-header">
+                    <i class="fas fa-user-astronaut"></i> Area Driver
+                </div>
+                <div class="card-body">
+                    <h3>Daftar Mitra</h3>
+                    <div class="form-group">
+                        <input type="text" id="driverName" placeholder="Nama Lengkap">
+                        <input type="number" id="driverTariff" placeholder="Tarif (ETH)">
+                    </div>
+                    <button class="btn btn-primary full-width" onclick="registerDriver()">Gabung Mitra</button>
+                    
+                    <div class="divider"></div>
+                    
+                    <h3>Operasional</h3>
+                    <div class="form-group">
+                        <input type="number" id="driverRideId" placeholder="Masukkan ID Pesanan">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-warning" onclick="acceptRide()">Terima</button>
+                        <button class="btn btn-success" onclick="completeRide()">Selesai</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card passenger-card">
+                <div class="card-header">
+                    <i class="fas fa-users"></i> Area Penumpang
+                </div>
+                <div class="card-body">
+                    <h3>Mau kemana hari ini?</h3>
+                    <button class="btn btn-cta full-width" onclick="requestRide()">
+                        <i class="fas fa-paper-plane"></i> Pesan Driver Sekarang (Request)
+                    </button>
+                    
+                    <div class="divider"></div>
+                    
+                    <h3>Pembayaran</h3>
+                    <div class="form-group">
+                        <input type="number" id="passRideId" placeholder="ID Pesanan">
+                        <input type="number" id="passAmount" placeholder="Total Bayar (ETH)">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-pay" onclick="fundRide()">Bayar (Escrow)</button>
+                        <button class="btn btn-confirm" onclick="confirmArrival()">Konfirmasi Tiba</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card info-card">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i> Monitoring Blockchain
+            </div>
+            <div class="card-body">
+                <div class="search-box">
+                    <input type="number" id="checkId" placeholder="Cari ID Pesanan...">
+                    <button class="btn btn-outline" onclick="cekStatusPesanan()">Cek</button>
+                </div>
+                <div id="outputArea" class="output-console">
+                    <p class="placeholder-text">Data pesanan akan muncul di sini...</p>
+                </div>
+                
+                <button class="btn btn-text" onclick="cekListDriver()">Lihat Semua Driver Terdaftar</button>
+                <div id="driverListArea" class="output-mini"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.0/web3.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
